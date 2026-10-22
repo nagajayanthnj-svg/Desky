@@ -1,0 +1,35 @@
+# Unity
+unity/*/[Ll]ibrary/
+unity/*/[Tt]emp/
+unity/*/[Oo]bj/
+unity/*/[Bb]uild/
+unity/*/[Bb]uilds/
+unity/*/[Ll]ogs/
+unity/*/[Uu]ser[Ss]ettings/
+unity/*/[Mm]emoryCaptures/
+*.csproj.user
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.mdb
+*.opendb
+*.VC.db
+*.apk
+*.aab
+crashlytics-buildid.txt
+# Generated Unity solution files inside the Unity project
+unity/*/*.csproj
+unity/*/*.sln
+# .NET
+dotnet/bin/
+dotnet/obj/
+TestResults/
+# IDE / OS
+.vs/
+.idea/
+.vscode/
+.DS_Store
+# Secrets (API keys for LLM / voice services)
+*.secrets.json
+.env
