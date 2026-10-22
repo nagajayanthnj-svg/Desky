@@ -1,6 +1,6 @@
 # Desk Butler – Development Plan
 
-**Scope:** PRD v1.5 Must Haves · **Deadline:** submit by **Tue 17 Nov 2026** (official deadline 18 Nov; one day buffer)
+**Scope:** PRD v1.6 Must Haves · **Deadline:** submit by **Tue 17 Nov 2026** (official: 18 Nov 12:00 PT = 19 Nov 01:30 IST; one day buffer)
 **Companion docs:** [`PRD.md`](PRD.md) · [`DECISIONS.md`](DECISIONS.md) · [`FRICTION_LOG.md`](FRICTION_LOG.md)
 
 ---
@@ -17,7 +17,7 @@
 | **P5 Demo + submit** | Mon 16 – Tue 17 Nov | Record, edit, submit | Devpost submission confirmed |
 | Buffer | Wed 18 Nov | Only for submission emergencies | — |
 
-**Friday checkpoints (30 Oct, 6 Nov, 13 Nov):** record every storyboard beat that works *on device* as a rough clip. This is a progress check and the fallback demo footage. Then review the friction log and open decisions (§4).
+**Friday checkpoints (30 Oct, 6 Nov, 13 Nov):** upload the current APK to the **Competition** release channel and install it through the Invite URL on the headset (D-018). Record every storyboard beat that works *on device* as a rough clip. This is a progress check and the fallback demo footage. Then review the friction log and open decisions (§4).
 
 ---
 
@@ -138,7 +138,9 @@ Sizes: **S** ≤ 2 h · **M** ≈ ½ day · **L** ≈ 1 day. Status: ✅ done ·
 | ID | Task | Size | Tests first | Acceptance | Deps | Status |
 |---|---|---|---|---|---|---|
 | DB-001 | Run `scripts/test.sh` locally with real NUnit; push to GitHub; CI green | S | — (existing 138) | Local and CI green; close F-001 | — | ⬜ |
-| DB-002 | Read Devpost official rules: video length, required assets, build format | S | — | PRD §6 confirmed or updated; F-002 closed | — | ⬜ |
+| DB-002 | Read Devpost official rules: video length, required assets, build format | S | — | PRD v1.6 §6, §12; F-002 closed | — | ✅ |
+| DB-009 | Dashboard: create app, **Competition** release channel, Invite URL; upload the DB-004 hello-world APK and install via the invite | S | — | Hello-world installs from the invite on Quest 3 | DB-004 | ⬜ |
+| DB-009b | Eligibility: confirm VR Start membership; ask the sponsor in writing about India and prize payment (F-004) | S | — | Written answer saved in `docs/` | — | ⬜ |
 | DB-003 | S-0: create `unity/DeskButler`; add the core package via `"com.deskbutler.core": "file:../../../packages/com.deskbutler.core"` and list it under `"testables"` | M | Core tests appear and pass in Unity Test Runner (EditMode) | 138 green inside Unity | DB-001 | ⬜ |
 | DB-004 | Passthrough + hands-only hello world on Quest 3 (no controllers) | S | — | DT-00: app launches, hands visible, 72 FPS | DB-003 | ⬜ |
 | DB-005 | `FileDeskStore : IDeskStore` (JsonUtility, write temp + rename) | S | EditMode: round-trip through real JSON incl. tags and enums; missing file → null; corrupt file → backup + null | Tests green | DB-003 | ⬜ |
@@ -189,7 +191,8 @@ Sizes: **S** ≤ 2 h · **M** ≈ ½ day · **L** ≈ 1 day. Status: ✅ done ·
 |---|---|---|---|---|
 | DB-050 | Performance: 72 FPS on Quest 3/3S (OVR Metrics); Quest 2 smoke test | M | DT-14 | ⬜ |
 | DB-051 | Full device-test pass × 2 (two desks / lighting conditions) | M | All DT pass twice | ⬜ |
-| DB-052 | Accessibility pass: subtitle size and contrast, hands-only run, keyboard-only note | S | DT-12, DT-06 | ⬜ |
+| DB-052 | Accessibility pass: subtitle size, **high-contrast subtitle toggle**, hands-only run, keyboard-only note, voice alternative for every hand action | S | DT-12, DT-06, DT-18 | ⬜ |
+| DB-054 | Cold start ≤ 10 s and clean pause/resume (headset off/on, Home menu) | M | DT-16, DT-17 | ⬜ |
 | DB-053 | Bug bash + fixes (each fix starts with a failing test where possible) | L | No S1/S2 bugs open | ⬜ |
 
 ### P5 · Demo + submission (16 – 17 Nov)
@@ -197,8 +200,8 @@ Sizes: **S** ≤ 2 h · **M** ≈ ½ day · **L** ≈ 1 day. Status: ✅ done ·
 | ID | Task | Size | Acceptance | Status |
 |---|---|---|---|---|
 | DB-060 | Rehearse the storyboard script; seed a realistic desk; record mixed-reality takes | M | Clean take per beat | ⬜ |
-| DB-061 | Edit to the storyboard; captions; check length against rules | M | Video ready | ⬜ |
-| DB-062 | Devpost: build, description, screenshots, video; **submit 17 Nov** | S | Confirmation received | ⬜ |
+| DB-061 | Edit to the storyboard; captions; **≤ 2:45**; device footage only (no AI-generated video); upload public to YouTube | M | Public link plays logged-out | ⬜ |
+| DB-062 | Devpost form: name, 140-char tagline, Productivity / New Experience, ≤ 500-word description (inspiration, how built, future plans, target launch date, hand interactions), screenshots; final APK in Competition channel; Invite URL tested from a second account; **submit 17 Nov** | S | Confirmation received; invite installs on a clean headset | ⬜ |
 
 ---
 
@@ -222,8 +225,11 @@ Run the ones on a task card at the end of that task, and all of them at checkpoi
 | DT-11 | Switch Pip ↔ Alden while idle 60 s each | Pip knocks notes crooked; Alden straightens them; saved poses unchanged after restart |
 | DT-12 | Whole storyboard **without speaking** | Every beat achievable via hand menus and keyboard |
 | DT-13 | Latency overlay during 10 commands | Ack ≤ 200 ms, change ≤ 400 ms, voice ≤ 1.0 s (p90) |
-| DT-14 | 5-minute session with 20 items, Pip idle | ≥ 72 FPS sustained on Quest 3/3S |
+| DT-14 | 5-minute session with 20 items, Pip idle | ≥ 72 FPS sustained on Quest 3/3S; **never below 60** (judged floor) |
 | DT-15 | Add an image panel from the folder | Image shows; survives restart |
+| DT-16 | Returning user: launch from the app library | Butler on the desk within 10 s |
+| DT-17 | Mid-dictation: take headset off 10 s, put back on; then open/close the Home menu | Draft, desk and personality intact; no stuck mic |
+| DT-18 | Every hand-menu action, done by voice instead; subtitles in high-contrast mode | All actions have a voice equivalent; subtitles readable on a bright desk |
 
 ---
 
@@ -237,6 +243,9 @@ Run the ones on a task card at the end of that task, and all of them at checkpoi
 | Hand keyboard is fiddly | M | M | Large keys, poke-only, short notes | DT-06 takes > 60 s for 5 words |
 | Scope creep from "one more command" | M | M | Grammar locked; new commands need a D-entry | Any new command after 6 Nov |
 | Demo recording quality | M | H | Checkpoint clips from 30 Oct; rehearse script | Checkpoint clip unusable |
+| Not eligible to win from India (banking clause) | L–M | H | Ask the sponsor in writing now (DB-009b, F-004) | No answer by 6 Nov → follow up on Devpost discussion + Start Discord |
+| Dashboard/upload problems on submission night | M | H | Competition channel set up in P0; upload at every checkpoint (D-018) | Any checkpoint upload fails |
+| Cloud voice down during judging | L | H | Commands work offline; keyboard always available ("take it away" test) | — |
 
 ---
 

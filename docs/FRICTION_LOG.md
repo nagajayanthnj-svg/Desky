@@ -9,8 +9,9 @@ Review every Friday checkpoint. Each open item gets an owner action or is consci
 | ID | Date | Task | Friction | Sev | Time lost | Root cause | Action | Status |
 |---|---|---|---|---|---|---|---|---|
 | F-001 | 2026-10-22 | Repo setup | No .NET SDK / NuGet in the sandbox that generated the repo; `dotnet test` couldn't run there | S3 | 15 min | Restricted build environment | Core verified with Mono `mcs` + an NUnit-compatible shim (138/138 passing). **First thing on your machine: run `scripts/test.sh` to confirm with real NUnit.** | Open → DB-001 |
-| F-002 | 2026-10-22 | Planning | The Meta announcement gives dates and the hand-tracking rule but not the demo video length; PRD assumes 3:00 | S2 | — | Rules live on Devpost | Read the Devpost official rules; update PRD §6 and the storyboard if different | Open → DB-002 |
+| F-002 | 2026-10-22 | Planning | The Meta announcement gives dates and the hand-tracking rule but not the demo video length; PRD assumes 3:00 | S2 | — | Rules live on Devpost | Done: under 3:00 is required; storyboard re-timed to 2:45 (PRD v1.6, D-018) | Closed |
 | F-003 | 2026-10-22 | DB-012 | Undo replaced item objects, so references held by the demo test (and future Unity views) went stale | S2 | 10 min | `Desk.Put` swapped instances | Fixed: restore state in place (`CopyStateFrom`); regression assert added (D-005) | Closed |
+| F-004 | 2026-10-22 | DB-002 | Rules exclude "countries where restrictions apply to banking and/or wire transfers" without naming them; India isn't listed either way | S1 | — | Vague eligibility clause | Email the sponsor via the Devpost page **this week** and get written confirmation that an India-based individual can win a cash prize; also confirm VR Start membership is active | Open → DB-009b |
 
 ---
 

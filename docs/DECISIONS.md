@@ -25,6 +25,8 @@ Every choice that changes scope, architecture, behaviour or workflow gets an ent
 | D-014 | Minimal hand keyboard promoted to Must Have | Accepted | 2026-10-22 |
 | D-015 | Character visual style | Proposed (decide by 28 Oct) | 2026-10-22 |
 | D-016 | Trunk-based, task-ID commits, TDD Definition of Done | Accepted | 2026-10-22 |
+| D-017 | Entry: Productivity track, New Experience division, three target awards | Accepted | 2026-10-22 |
+| D-018 | Demo video 2:45 target; ship a build to the Competition channel every checkpoint | Accepted | 2026-10-22 |
 
 ---
 
@@ -94,3 +96,13 @@ Every choice that changes scope, architecture, behaviour or workflow gets an ent
 
 ### D-016 · Workflow
 - **Decision:** Trunk-based development with short `task/DB-xxx-slug` branches (≤ 1 day), Conventional Commits with the task ID, and red-green-refactor TDD for core work. The Definition of Done is in `DEVELOPMENT_PLAN.md` §3.
+
+### D-017 · Entry shape
+- **Context:** The official rules (DB-002) list tracks, divisions and special awards.
+- **Decision:** Track **Productivity**; division **New Experience** (repo started 22 Oct 2026, after the 24 Sep window opened; no pre-existing code). Target awards: **Best Agentic Interaction**, **Best Accessibility Forward Experience**, and **Best First Five Minutes**. The last rewards an opening that explains itself, teaches controller-free interaction without a wall of text, and pays off before the headset comes off, which is our onboarding hook.
+- **Consequences:** Onboarding polish is worth an award by itself, so it stays top of P1. "Best Reason to Come Back" is not targeted (no progression loop); revisit only after freeze.
+
+### D-018 · Video length and build cadence
+- **Context:** The video must be under 3:00, and the build is judged exactly as submitted, via an APK in a "Competition" release channel with an Invite URL.
+- **Decision:** Storyboard re-timed to 2:45 (15 s safety margin). Set up the dashboard app, Competition channel and Invite URL in P0 (DB-009), and upload a build at every Friday checkpoint so the final upload is routine, not a deadline-night first.
+- **Consequences:** Dashboard or upload friction surfaces in week 1, not on 17 Nov.

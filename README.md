@@ -2,13 +2,13 @@
 
 A hands-first mixed reality productivity companion for Meta Quest. A small AI butler (Alden or Pip) lives on your real desk, organises notes, finds things, and keeps you focused.
 
-Entry for the **Meta VR Start Developer Competition 2026**, Productivity track. Submission deadline is 18 Nov 2026; we submit on 17 Nov.
+Entry for the **Meta VR Start Developer Competition 2026**, Productivity track. Submission deadline is 18 Nov 2026, 12:00 PT (19 Nov 01:30 IST); we submit on 17 Nov. Division: New Experience.
 
 ## Where things are
 
 | Path | What |
 |---|---|
-| `docs/PRD.md` | Product requirements v1.5 (locked; change via a decision) |
+| `docs/PRD.md` | Product requirements v1.6 (locked; change via a decision) |
 | `docs/DEVELOPMENT_PLAN.md` | Timeline, TDD methodology, task board, device test scripts, risks, cut line |
 | `docs/DECISIONS.md` | Decision log (D-xxx) |
 | `docs/FRICTION_LOG.md` | Friction log (F-xxx) |

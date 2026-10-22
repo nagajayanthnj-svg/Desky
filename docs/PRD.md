@@ -1,15 +1,25 @@
 # Desk Butler – Product Requirements Document (PRD)
 
-**Version:** 1.5
+**Version:** 1.6
 **Date:** 22 October 2026
 **Status:** Locked for Development (changes go through `docs/DECISIONS.md`)
-**Target Competition:** Meta VR Start Developer Competition 2026 (submission deadline **18 Nov 2026**)
+**Target Competition:** Meta VR Start Developer Competition 2026 (deadline **18 Nov 2026, 12:00 PT** = 19 Nov 01:30 IST; division: **New Experience**)
 **Primary Track:** Productivity
-**Secondary Focus:** Best Agentic Interaction + Best Accessibility Forward Experience
+**Special awards targeted:** Best Agentic Interaction · Best Accessibility Forward Experience · Best First Five Minutes (D-017)
 
 ---
 
-## 0. Changes from v1.4
+## 0. Changes
+
+### v1.6 (official Devpost rules applied, D-017, D-018)
+- Demo video must be **under 3:00**; storyboard re-timed to **2:45** (§6)
+- Submission: APK in a **"Competition" release channel** + judge **Invite URL**; build frozen at the deadline (§12)
+- Judging: four criteria at 25% each; **≥ 60 FPS** is the judged floor, 72 FPS stays our target (§8)
+- Seated **two-foot radius**, fast cold start, clean pause/resume are now Must Have (§5.9)
+- Added target award: **Best First Five Minutes** (it rewards exactly our onboarding hook)
+- High-contrast subtitle option added (named in the Accessibility award criteria)
+
+### v1.5 (review gaps promoted to Must Have)
 
 v1.4 had gaps and contradictions. All of them are now **Must Have** and resolved as follows.
 
@@ -182,7 +192,7 @@ Wake words ("Alden,", "hey Pip") and politeness ("please", "could you") are igno
 - About 15–20 cm tall, sits at the desk corner, walks across the surface
 - Reacts to being looked at, pointed at or spoken to
 - Simple facial expressions and body language; spatialised voice
-- Every reply is also shown as a **subtitle bubble** (accessibility)
+- Every reply is also shown as a **subtitle bubble** (accessibility), with a **high-contrast** option
 
 **Idle behaviour is cosmetic (D-006).** Idle animations apply render-only offsets on top of saved poses. They never change the saved desk, never touch locked or hidden items, and are cleared on restart.
 
@@ -237,6 +247,9 @@ The butler never fails silently and never fills in text the user didn't say or t
 
 ### 5.8 Voice, LLM and Latency (Must Have)
 
+- Passes the rules' **"take it away" test**: with the network or LLM gone, every command still works from the grammar and catalog. Only dictation needs speech-to-text.
+
+
 - **Speech-to-text, text-to-speech:** behind `ISpeechToText` / `ITextToSpeech`. The candidate stack is Meta Voice SDK dictation and TTS with two distinct voices; it is validated in spike S-1 (D-009). It is swappable without touching the core.
 - **Commands are deterministic.** The grammar picks the action and the response catalog picks the line.
 - **The LLM is optional flavour** (`IFlavourModel`, D-004). It may re-word a line the core already chose, or answer small talk. It never chooses actions and is never the only source of a reply. If it doesn't answer within **700 ms**, the baseline line is used.
@@ -249,21 +262,29 @@ The butler never fails silently and never fills in text the user didn't say or t
 | Desk change visible (highlight, move, hide) | ≤ 400 ms |
 | Spoken reply starts | ≤ 1.0 s |
 
+### 5.9 Session Shape (Must Have, competition guidance)
+
+- **Seated, two-foot radius:** every interaction reachable on a normal desk without standing
+- **Fast cold start:** butler on the desk within **10 s** of launch for a returning user (DT-16)
+- **Clean pause/resume:** headset off/on or the Home menu keeps desk, capture draft and personality (DT-17)
+- **Satisfying in under 10 minutes:** the first-run hook plus one note and one organise fits in 3 minutes
+- No brand names, logos or branded products anywhere in the app or the video
+
 ---
 
 ## 6. Demo Video Storyboard (Judged Artifact)
 
-Target **3:00**. The Meta announcement doesn't state a length, so verify it against the Devpost rules (F-002). This sequence drives development priority and is encoded as the acceptance test `DemoStoryboardTests`.
+Must be **under 3:00** (judges need not watch past 3:00). We target **2:45**. Footage comes from a Quest device (mixed-reality capture), not AI-generated video; it is uploaded to YouTube or Vimeo as **public**. This sequence drives development priority and is encoded as the acceptance test `DemoStoryboardTests`.
 
 | Time | Beat | What is shown |
 |---|---|---|
 | 0:00 | Hook: Jump Down | Butler spawns floating, asks user to look at desk, jumps down |
-| 0:25 | First Note (Dictation) | Voice note, one correction, pinned |
-| 0:50 | Agentic Organise | "Clean up the desk" groups notes; "Undo" shown briefly |
-| 1:15 | Personality Contrast | Pip knocks a note crooked; switch to Alden, who straightens it |
-| 1:45 | Focus Mode + Persistence | Focus hides non-important notes; app restarted, everything still there |
-| 2:15 | Accessibility | Hand keyboard note in a "quiet room"; subtitles visible |
-| 2:30–3:00 | Closing | "Where did I put the pricing notes?" highlight + status + flourish |
+| 0:20 | First Note (Dictation) | Voice note, one correction, pinned |
+| 0:40 | Agentic Organise | "Clean up the desk" groups notes; "Undo" shown briefly |
+| 1:05 | Personality Contrast | Pip knocks a note crooked; switch to Alden, who straightens it |
+| 1:30 | Focus Mode + Persistence | Focus hides non-important notes; app restarted, everything still there |
+| 2:00 | Accessibility | Hand keyboard note in a "quiet room"; high-contrast subtitles; voice used in place of a hand action |
+| 2:15–2:45 | Closing | "Where did I put the pricing notes?" highlight + status + flourish |
 
 ---
 
@@ -292,7 +313,7 @@ Target **3:00**. The Meta announcement doesn't state a length, so verify it agai
 | Anchors | One persistent spatial anchor per desk (D-002) |
 | Storage | Local JSON `DeskSnapshot`, schema-versioned |
 | Input | Hands-first + voice + minimal hand keyboard |
-| Performance | Stable 72 FPS on Quest 3/3S; Quest 2 best-effort (D-010) |
+| Performance | Target 72 FPS on Quest 3/3S; **never below 60 FPS** (judged floor); Quest 2 best-effort (D-010) |
 | Passthrough | Required |
 | Audio | Spatialised butler voice + subtitles |
 | Target Devices | **Quest 3, Quest 3S** (primary); Quest 2 (best-effort) |
@@ -346,8 +367,19 @@ Target **3:00**. The Meta announcement doesn't state a length, so verify it agai
 ## 11. Open Questions
 
 - Character visual style (stylised vs semi-realistic). Decide by 28 Oct (D-015, pending).
-- Official demo video length on Devpost (F-002)
+- Competition eligibility for an India-based entrant: the rules exclude countries with banking/wire-transfer restrictions without listing them. **Confirm with the sponsor** (F-004).
 
 ---
 
-**End of PRD v1.5**
+## 12. Submission Requirements (Devpost official rules)
+
+| Item | Requirement |
+|---|---|
+| Build | APK uploaded to a release channel named **"Competition"** in the Meta VR Developer Dashboard |
+| Judge access | **Invite URL** on the form; free; available until winners are announced (~11 Dec) |
+| Video | Under 3:00, device or XR Simulator footage, public on YouTube/Vimeo |
+| Form | Name, 140-character tagline, track (Productivity), division (New Experience), description ≤ 500 words: inspiration, how it was built, future plans, target launch date, hand interactions |
+| Freeze | No changes after 18 Nov 12:00 PT; judged as submitted; must run "successfully and consistently" |
+| Eligibility | 18+, Meta account with Developer Access, **Meta VR Start member** by submission; one entry per person |
+
+**End of PRD v1.6**
