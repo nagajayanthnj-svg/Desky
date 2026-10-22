@@ -118,7 +118,7 @@
 
 Sizes: **S** ≤ 2 h · **M** ≈ ½ day · **L** ≈ 1 day. Status: ✅ done · 🔄 in progress · ⬜ todo · ✂️ cut
 
-### Core domain (built test-first in this repo, 138 tests)
+### Core domain (built test-first in this repo, 146 tests)
 
 | ID | Task | Tests (exist) | Status |
 |---|---|---|---|
@@ -132,6 +132,7 @@ Sizes: **S** ≤ 2 h · **M** ≈ ½ day · **L** ≈ 1 day. Status: ✅ done ·
 | DB-017 | Cosmetic idle behaviour | `IdleBehaviourTests` | ✅ |
 | DB-018 | Response catalog for both personalities | `ResponseCatalogTests` | ✅ |
 | DB-019 | Storyboard acceptance through core | `DemoStoryboardTests` | ✅ |
+| DB-039a | `FlavourGate`: LLM re-wording only within 700 ms, else baseline | `FlavourGateTests` | ✅ |
 
 ### P0 · Foundations (23–26 Oct)
 
@@ -173,7 +174,7 @@ Sizes: **S** ≤ 2 h · **M** ≈ ½ day · **L** ≈ 1 day. Status: ✅ done ·
 | DB-036 | Delete confirmation UI (voice yes/no + poke buttons) | S | EditMode: `NeedsConfirmation` shows dialog; any answer hides it | DT-08 | DB-034 | ⬜ |
 | DB-037 | Image panels: folder picker → `ItemType.Image` panel | M | Core test first: pin image item stores path; EditMode: missing file → placeholder | DT-15 | DB-022 | ⬜ |
 | DB-038 | Latency instrumentation + debug overlay (end-of-speech → ack / change / voice) | S | EditMode: timer records the three marks | DT-13 within budget | DB-030 | ⬜ |
-| DB-039 | Core `FlavourGate` (race `IFlavourModel` vs 700 ms, fall back to baseline) + optional LLM adapter behind a toggle | M | **Core NUnit first:** timeout → baseline; exception → baseline; empty → baseline; success → re-worded | Works with toggle off and on | DB-026 | ⬜ |
+| DB-039 | Optional LLM adapter implementing `IFlavourModel`, wired through `FlavourGate` (core done in DB-039a), behind a toggle; API key never in the repo | S | EditMode: toggle off → model never called | Works with toggle off and on; DT-13 still in budget | DB-026 | ⬜ |
 
 ### P3 · Character + personality (8 – 12 Nov)
 
